@@ -1,0 +1,173 @@
+/**********************************************
+* CardSet.cpp - Contains implementation of class CardSet
+* <Mohammad Fawaz Siddiqi, 5465163, mfs995@uowmail.edu.au, 29th October 2018>
+***********************************************/
+
+#include <iostream>
+#include "CardSet.hpp"
+using namespace std;
+
+CardSet::CardSet() //Default constructor initialized
+{
+    int Card = NULL;
+    int nCards =0;
+}
+
+CardSet::CardSet(int a) //Initializing consttructor initialized
+{                       //Shall create 2 arrays of 0 to 51 cards if 104 cards requested
+
+    Card = new int[a]; //New array of card is initialized
+    nCards=a;
+
+    for(int i=0; i<nCards; i++)
+    {
+        if (i>=52) { //checks if the number of cards reqested is greater than 52
+            Card[i] = i%52; //if true, then it shall find the i%52 and then place it in card[i]
+        }
+        else{
+            Card[i] = i; //else it will just normally put index i in Card[i]
+        }
+    }
+}
+
+int CardSet::Size() const //card size getter fucntion is initialized
+{
+        return nCards ;
+}
+
+bool CardSet::IsEmpty() const //Checks if the CardSet is empty and returns a bool value of true or false accordingly
+{
+    if (nCards == 0) {
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+int CardSet::Deal() //Fuction to deal cards from a cardSet
+{
+    if (CardSet::IsEmpty()) { //checks if the cardSet is empty
+        cerr << "The card set is empty" <<endl;
+        exit(1);
+    }
+
+    int deal = Card[0]; //gives out the value of the first card
+    nCards = nCards - 1; //Subtracts 1 card from nCards
+    if (nCards > 0) { //if nCards is greater than 0
+        int *newCardSet = new int[nCards]; //creates a new cardSet with the new number of nCards
+        int j=1;
+        for (int i=0; i < nCards; i++) {
+            newCardSet[i] = Card[j++]; //places the cards int he new CardSet with the new Card value of J
+        }
+        Card = newCardSet; //inserts the cards in the newCardSet
+    }
+    return deal; //returns the first card of the cardset
+}
+
+void CardSet::Deal(int n, CardSet& Set1, CardSet& Set2)
+{
+    if (CardSet::Size() < n*2) { //checks if there are enough cards in the cardSet to deal with
+        cout<<"There are not enough cards to deal " <<n<<" cards."<<endl;
+        exit(1);
+    }
+
+    for (int i=0; i < n; i++) { //checks with n and then adds cards to the cardset with the fucntion Deal in two seperate sets
+        Set1.AddCard(CardSet::Deal());
+        Set2.AddCard(CardSet::Deal());
+    }
+}
+
+void CardSet::Deal(int n, CardSet& Set1, CardSet& Set2, CardSet& Set3, CardSet& Set4)
+{
+    if (CardSet::Size() < n*4) { //checks if there are enough cards in the cardSet to deal with
+        cout<<"There are not enough cards to deal " <<n<<" cards."<<endl;
+        exit(1);
+    }
+
+    for (int i=0; i < n; i++) { //checks with n and then adds cards to the cardset with the fucntion Deal in four seperate sets
+        Set1.AddCard(CardSet::Deal());
+        Set2.AddCard(CardSet::Deal());
+        Set3.AddCard(CardSet::Deal());
+        Set4.AddCard(CardSet::Deal());
+    }
+}
+
+void CardSet::Shuffle() //Shuffles the cards in a CardSet
+{
+    int i=0;
+    for (int k=0; k < nCards; k++) {
+        i = rand() % nCards - 1; //generates a random number and then finds the mod with the number of cards - 1
+                                 //(nCards does not exceed number of cards 52)
+
+        if (k != i) { //checks if index k is not equal to index i and then swaps the cards from k to i
+            int tempCard = Card[k];
+            Card[k] = Card[i];
+            Card[i] = tempCard;
+        }
+    }
+
+}
+
+void CardSet::MergeShuffle(CardSet& Set)
+{
+    int count = nCards + Set.Size(); //takes in the number of cards and the size of it
+    int *newCardSet = new int[count]; //creares a new card set array
+
+    int num=0;
+    while(num<count) { //while the num is less than the number of cards + the size of a set
+        if (CardSet::Size() > 0){ //if the CardSet size is >0 then it deals a card in the new card set
+            newCardSet[num++] = Deal();
+            if (Set.Size() > 0) { //if the set size is >0 then it deals the card in the newcardset from the set
+                newCardSet[num++] = Set.Deal();
+            }
+        }
+    }
+    delete [] Card; //deletes the card
+    nCards = count; //sets the new nCard
+    Card = newCardSet; //sets the Card to the newCardSet
+}
+
+void CardSet::AddCard(int newCard) //Adds a card to the cardset
+{
+    nCards = nCards + 1; //adds to the nCards
+    int *newCardSet = new int[nCards]; //Creates a newCardSet with the new number of cards (nCards)
+    newCardSet[0] = newCard; //sets the index 0 of the newCardSet to the newCard
+    int i=0;
+
+    if (CardSet::Size() > 1) //if the size of the cardSet is >1
+        for (int j=1; j < nCards; j++) {
+            newCardSet[j] = Card[i++];//places the cards int he new CardSet with the new Card value of i
+        }
+    delete [] Card; //Deletes the old Card
+    Card = newCardSet; //Sets the new card to the newCardSet
+}
+
+
+
+void CardSet::Print() const //Prints out a particular cardset
+{
+    for (int i=0; i < nCards; i++) { //for loop to monitor the print of cards
+        if ((i%5) == 0) { //if the i mod 5 is equal to 0 then it will output a new line
+            cout<<endl;
+        }
+         PrintCard(Card[i]); //Uses the print card fuction to print out a particular card of index i
+    }
+    cout<<endl<<endl;
+}
+
+void CardSet::PrintCard(int c) const //prints out the card with the rank and the suit
+{
+	int Rank = c%13;
+	int Suit = c/13;
+	const char NameSuit[5] = "SCDH";
+	const char NameRank[14] = "23456789XJQKA";
+	cout << NameRank[Rank] << NameSuit[Suit]<<" ";
+}
+
+CardSet::~CardSet() //destructor to delete the card if the Card i not equal to null
+{
+    if (Card != NULL) {
+        delete [] Card;
+    }
+}

@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F1E066122171E56100F245F3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F1E066112171E56100F245F3 /* main.cpp */; };
+		F1CC005B2171E77400822B5D /* CardSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F1CC00582171E77400822B5D /* CardSet.cpp */; };
+		F1CC005C2171E77400822B5D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F1CC005A2171E77400822B5D /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +24,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F1CC00582171E77400822B5D /* CardSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CardSet.cpp; sourceTree = "<group>"; };
+		F1CC00592171E77400822B5D /* CardSet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CardSet.hpp; sourceTree = "<group>"; };
+		F1CC005A2171E77400822B5D /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		F1E0660E2171E56100F245F3 /* MohammadFawazSiddiqi_5465163_Ass2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MohammadFawazSiddiqi_5465163_Ass2; sourceTree = BUILT_PRODUCTS_DIR; };
-		F1E066112171E56100F245F3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +60,9 @@
 		F1E066102171E56100F245F3 /* MohammadFawazSiddiqi_5465163_Ass2 */ = {
 			isa = PBXGroup;
 			children = (
-				F1E066112171E56100F245F3 /* main.cpp */,
+				F1CC00582171E77400822B5D /* CardSet.cpp */,
+				F1CC00592171E77400822B5D /* CardSet.hpp */,
+				F1CC005A2171E77400822B5D /* main.cpp */,
 			);
 			path = MohammadFawazSiddiqi_5465163_Ass2;
 			sourceTree = "<group>";
@@ -118,7 +123,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1E066122171E56100F245F3 /* main.cpp in Sources */,
+				F1CC005C2171E77400822B5D /* main.cpp in Sources */,
+				F1CC005B2171E77400822B5D /* CardSet.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

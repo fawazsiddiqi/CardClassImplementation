@@ -2,6 +2,15 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:MohammadFawazSiddiqi_5465163_Ass2.xcodeproj">
+      location = "group:../MohammadFawazSiddiqi_5465163_Ass2/CardSet.cpp">
+   </FileRef>
+   <FileRef
+      location = "group:../MohammadFawazSiddiqi_5465163_Ass2/CardSet.h">
+   </FileRef>
+   <FileRef
+      location = "group:../MohammadFawazSiddiqi_5465163_Ass2/main.cpp">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>
